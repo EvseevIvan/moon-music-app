@@ -8,8 +8,7 @@
 import UIKit
 import WebKit
 
-let clientID = "39c7757d887d42c188800b0054d32bf1"
-let clientSecret = "5c9893f7c5b84699b5e74befd66658a8"
+
 
 class AuthenticationViewController: UIViewController, WKNavigationDelegate {
     
@@ -27,6 +26,11 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         
         webView.navigationDelegate = self
         view.addSubview(webView)
+        
+        guard let url = AuthManager.shared.signInURL else {
+            return
+        }
+        webView.load(URLRequest(url: url))
 
     }
     
@@ -35,6 +39,17 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         webView.frame = view.bounds
     }
     
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        guard let url = webView.url else {
+            return
+        }
+        
+        guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: { $0.name == "code" })?.value else {
+            return
+        }
+        
+        print(code)
+    }
     
 
 

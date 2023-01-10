@@ -19,6 +19,7 @@
 		4474B5B2296C908F00FAAF38 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B1296C908F00FAAF38 /* ProfileViewController.swift */; };
 		4474B5B4296C90B700FAAF38 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B3296C90B700FAAF38 /* PlayerViewController.swift */; };
 		4474B5B6296C975700FAAF38 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */; };
+		44F7A7FB296DF6D80020E1B5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4474B5B1296C908F00FAAF38 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4474B5B3296C90B700FAAF38 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		4474B58F296C8B6A00FAAF38 /* Moon Music App */ = {
 			isa = PBXGroup;
 			children = (
+				44F7A7FC296DF7FF0020E1B5 /* Managers */,
 				4474B5A7296C8BBD00FAAF38 /* Views */,
 				4474B5A6296C8BB300FAAF38 /* Models */,
 				4474B5A5296C8B9F00FAAF38 /* ViewControllers */,
@@ -123,6 +126,14 @@
 				4474B592296C8B6A00FAAF38 /* SceneDelegate.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		44F7A7FC296DF7FF0020E1B5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 				4474B5AA296C8FB000FAAF38 /* TapBarViewController.swift in Sources */,
 				4474B5B4296C90B700FAAF38 /* PlayerViewController.swift in Sources */,
 				4474B5AE296C903E00FAAF38 /* LibraryViewController.swift in Sources */,
+				44F7A7FB296DF6D80020E1B5 /* AuthManager.swift in Sources */,
 				4474B5B2296C908F00FAAF38 /* ProfileViewController.swift in Sources */,
 				4474B593296C8B6A00FAAF38 /* SceneDelegate.swift in Sources */,
 			);
