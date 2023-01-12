@@ -7,7 +7,7 @@
 
 import UIKit
 import WebKit
-
+import Spotify_Kit
 
 
 class AuthenticationViewController: UIViewController, WKNavigationDelegate {
@@ -24,10 +24,13 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let config = SpotifyKitConfiguration(scopes: "", redirectUri: "https://github.com/EvseevIvan", clientID: "39c7757d887d42c188800b0054d32bf1", clientSecret: "5c9893f7c5b84699b5e74befd66658a8")
+        SpotifyAuthManager.shared.configure(with: config)
+                
         webView.navigationDelegate = self
         view.addSubview(webView)
-        
-        guard let url = AuthManager.shared.signInURL else {
+
+        guard let url = SpotifyAuthManager.shared.signInURL else {
             return
         }
         webView.load(URLRequest(url: url))
@@ -43,12 +46,21 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         guard let url = webView.url else {
             return
         }
-        
-        guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: { $0.name == "code" })?.value else {
+        print(url)
+        guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: { $0.name == "code"  })?.value else {
             return
         }
-        
-        print(code)
+        webView.isHidden = true
+
+        SpotifyAuthManager.shared.exchangeCodeForToken(code: code) { success in
+            DispatchQueue.main.async {
+                let vc = TapBarViewController()
+                vc.modalPresentationStyle = .fullScreen
+                self.navigationController?.present(vc, animated: true)
+                
+            }
+        }
+
     }
     
 

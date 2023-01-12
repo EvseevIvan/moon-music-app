@@ -20,9 +20,11 @@
 		4474B5B4296C90B700FAAF38 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B3296C90B700FAAF38 /* PlayerViewController.swift */; };
 		4474B5B6296C975700FAAF38 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */; };
 		44F7A7FB296DF6D80020E1B5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */; };
+		D4BEF7A0A58AF1617D527E8D /* Pods_Moon_Music_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12387FDF832D3C105516995D /* Pods_Moon_Music_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12387FDF832D3C105516995D /* Pods_Moon_Music_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moon_Music_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474B58D296C8B6A00FAAF38 /* Moon Music App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moon Music App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474B590296C8B6A00FAAF38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4474B592296C8B6A00FAAF38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +40,8 @@
 		4474B5B3296C90B700FAAF38 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		65BB84B9C78A2DC990E40C43 /* Pods-Moon Music App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moon Music App.release.xcconfig"; path = "Target Support Files/Pods-Moon Music App/Pods-Moon Music App.release.xcconfig"; sourceTree = "<group>"; };
+		65D1166317F33089C48AEB1D /* Pods-Moon Music App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moon Music App.debug.xcconfig"; path = "Target Support Files/Pods-Moon Music App/Pods-Moon Music App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +49,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BEF7A0A58AF1617D527E8D /* Pods_Moon_Music_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AE8C845F372EC9E7DC7EACC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12387FDF832D3C105516995D /* Pods_Moon_Music_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4474B584296C8B6900FAAF38 = {
 			isa = PBXGroup;
 			children = (
 				4474B58F296C8B6A00FAAF38 /* Moon Music App */,
 				4474B58E296C8B6A00FAAF38 /* Products */,
+				FD5D6B44D13FAA0F1780D038 /* Pods */,
+				2AE8C845F372EC9E7DC7EACC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +151,15 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		FD5D6B44D13FAA0F1780D038 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65D1166317F33089C48AEB1D /* Pods-Moon Music App.debug.xcconfig */,
+				65BB84B9C78A2DC990E40C43 /* Pods-Moon Music App.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4474B5A1296C8B6A00FAAF38 /* Build configuration list for PBXNativeTarget "Moon Music App" */;
 			buildPhases = (
+				AB0059E6267FEAAD57AA0056 /* [CP] Check Pods Manifest.lock */,
 				4474B589296C8B6900FAAF38 /* Sources */,
 				4474B58A296C8B6900FAAF38 /* Frameworks */,
 				4474B58B296C8B6900FAAF38 /* Resources */,
+				D570FEB83B582CD1CD0895C8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -200,6 +226,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AB0059E6267FEAAD57AA0056 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Moon Music App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D570FEB83B582CD1CD0895C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Moon Music App/Pods-Moon Music App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Moon Music App/Pods-Moon Music App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Moon Music App/Pods-Moon Music App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4474B589296C8B6900FAAF38 /* Sources */ = {
@@ -350,6 +418,7 @@
 		};
 		4474B5A2296C8B6A00FAAF38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65D1166317F33089C48AEB1D /* Pods-Moon Music App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -377,6 +446,7 @@
 		};
 		4474B5A3296C8B6A00FAAF38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65BB84B9C78A2DC990E40C43 /* Pods-Moon Music App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
