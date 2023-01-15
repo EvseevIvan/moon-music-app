@@ -30,7 +30,6 @@ class WelcomeViewController: UIViewController {
     
     @objc func signInPressed() {
         let vc = AuthenticationViewController()
-//        self.navigationController?.popToViewController(vc, animated: true)
-            self.signInButton.window?.rootViewController = UINavigationController(rootViewController: vc)
+        self.signInButton.window?.rootViewController = UINavigationController(rootViewController: vc)
     }
 }

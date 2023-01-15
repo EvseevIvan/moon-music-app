@@ -21,6 +21,8 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         return webView
     }()
 
+    let viewModel = AuthViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,10 +32,8 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         webView.navigationDelegate = self
         view.addSubview(webView)
 
-        guard let url = SpotifyAuthManager.shared.signInURL else {
-            return
-        }
-        webView.load(URLRequest(url: url))
+        let url = viewModel.signInURL
+        self.webView.load(URLRequest(url: url!))
 
     }
     
@@ -51,15 +51,26 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
             return
         }
         webView.isHidden = true
-
-        SpotifyAuthManager.shared.exchangeCodeForToken(code: code) { success in
-            DispatchQueue.main.async {
+        
+        
+        NetworkManager().getAccessToken(code: code, redirectURL: "https%3A%2F%2Fgithub.com%2FEvseevIvan", grantType: "authorization_code") { data in
+            if data.access_token != "" {
                 let vc = TapBarViewController()
                 vc.modalPresentationStyle = .fullScreen
                 self.navigationController?.present(vc, animated: true)
-                
+            } else  {
+                print("SLDKALSKDa")
             }
         }
+        
+//        SpotifyAuthManager.shared.exchangeCodeForToken(code: code) { success in
+//            DispatchQueue.main.async {
+//                let vc = TapBarViewController()
+//                vc.modalPresentationStyle = .fullScreen
+//                self.navigationController?.present(vc, animated: true)
+//
+//            }
+//        }
 
     }
     

@@ -19,7 +19,9 @@
 		4474B5B2296C908F00FAAF38 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B1296C908F00FAAF38 /* ProfileViewController.swift */; };
 		4474B5B4296C90B700FAAF38 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B3296C90B700FAAF38 /* PlayerViewController.swift */; };
 		4474B5B6296C975700FAAF38 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */; };
-		44F7A7FB296DF6D80020E1B5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */; };
+		86D90354297348610060A310 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D90353297348610060A310 /* NetworkManager.swift */; };
+		86D90358297350030060A310 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D90357297350030060A310 /* AuthViewModel.swift */; };
+		86FC32C329742FC40089B120 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FC32C229742FC40089B120 /* AuthModel.swift */; };
 		D4BEF7A0A58AF1617D527E8D /* Pods_Moon_Music_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12387FDF832D3C105516995D /* Pods_Moon_Music_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,9 +41,11 @@
 		4474B5B1296C908F00FAAF38 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4474B5B3296C90B700FAAF38 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		65BB84B9C78A2DC990E40C43 /* Pods-Moon Music App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moon Music App.release.xcconfig"; path = "Target Support Files/Pods-Moon Music App/Pods-Moon Music App.release.xcconfig"; sourceTree = "<group>"; };
 		65D1166317F33089C48AEB1D /* Pods-Moon Music App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moon Music App.debug.xcconfig"; path = "Target Support Files/Pods-Moon Music App/Pods-Moon Music App.debug.xcconfig"; sourceTree = "<group>"; };
+		86D90353297348610060A310 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		86D90357297350030060A310 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthViewModel.swift; path = "Moon Music App/Managers/AuthViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		86FC32C229742FC40089B120 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthModel.swift; path = "Moon Music App/Managers/AuthModel.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		4474B5A4296C8B9300FAAF38 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				86D90357297350030060A310 /* AuthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 		4474B5A6296C8BB300FAAF38 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				86FC32C229742FC40089B120 /* AuthModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,7 +152,7 @@
 		44F7A7FC296DF7FF0020E1B5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				44F7A7FA296DF6D80020E1B5 /* AuthManager.swift */,
+				86D90353297348610060A310 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -274,16 +280,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D90354297348610060A310 /* NetworkManager.swift in Sources */,
 				4474B5AC296C903000FAAF38 /* SearchViewController.swift in Sources */,
 				4474B5B6296C975700FAAF38 /* WelcomeViewController.swift in Sources */,
+				86FC32C329742FC40089B120 /* AuthModel.swift in Sources */,
 				4474B595296C8B6A00FAAF38 /* MainViewController.swift in Sources */,
 				4474B591296C8B6A00FAAF38 /* AppDelegate.swift in Sources */,
 				4474B5B0296C906800FAAF38 /* AuthenticationViewController.swift in Sources */,
 				4474B5AA296C8FB000FAAF38 /* TapBarViewController.swift in Sources */,
 				4474B5B4296C90B700FAAF38 /* PlayerViewController.swift in Sources */,
 				4474B5AE296C903E00FAAF38 /* LibraryViewController.swift in Sources */,
-				44F7A7FB296DF6D80020E1B5 /* AuthManager.swift in Sources */,
 				4474B5B2296C908F00FAAF38 /* ProfileViewController.swift in Sources */,
+				86D90358297350030060A310 /* AuthViewModel.swift in Sources */,
 				4474B593296C8B6A00FAAF38 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

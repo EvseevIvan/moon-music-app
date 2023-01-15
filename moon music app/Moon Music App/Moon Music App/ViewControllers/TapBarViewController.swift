@@ -17,7 +17,6 @@ class TapBarViewController: UITabBarController {
         let searchVC = SearchViewController()
         let libraryVC = LibraryViewController()
         let profileVC = ProfileViewController()
-        let welcomeVC = WelcomeViewController()
         
         mainVC.title = "Main"
         playerVC.title = "Player"
