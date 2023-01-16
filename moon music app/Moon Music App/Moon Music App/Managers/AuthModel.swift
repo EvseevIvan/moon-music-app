@@ -7,10 +7,17 @@
 
 import Foundation
 
-public struct SpotifyAuthResponse: Codable, Equatable {
-    let access_token: String
-    let expires_in: Int
-    let refresh_token: String?
-    let scope: String
-    let token_type: String
+
+struct AccessToken: Codable {
+    let accessToken, tokenType: String
+    let expiresIn: Int
+    let refreshToken, scope: String
+
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case tokenType = "token_type"
+        case expiresIn = "expires_in"
+        case refreshToken = "refresh_token"
+        case scope
+    }
 }

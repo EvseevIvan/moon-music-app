@@ -25,9 +25,6 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let config = SpotifyKitConfiguration(scopes: "", redirectUri: "https://github.com/EvseevIvan", clientID: "39c7757d887d42c188800b0054d32bf1", clientSecret: "5c9893f7c5b84699b5e74befd66658a8")
-        SpotifyAuthManager.shared.configure(with: config)
                 
         webView.navigationDelegate = self
         view.addSubview(webView)
@@ -46,32 +43,21 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         guard let url = webView.url else {
             return
         }
-        print(url)
+        
         guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: { $0.name == "code"  })?.value else {
             return
         }
         webView.isHidden = true
+    
+        print(code)
         
-        
-        NetworkManager().getAccessToken(code: code, redirectURL: "https%3A%2F%2Fgithub.com%2FEvseevIvan", grantType: "authorization_code") { data in
-            if data.access_token != "" {
-                let vc = TapBarViewController()
-                vc.modalPresentationStyle = .fullScreen
-                self.navigationController?.present(vc, animated: true)
-            } else  {
-                print("SLDKALSKDa")
-            }
+        viewModel.getAccessToken(code: code, redirectURL: viewModel.redirectURL, grantType: "authorization_code") { token in
+            let vc = TapBarViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self.navigationController?.present(vc, animated: true)
+            print(self.viewModel.accessToken)
+            
         }
-        
-//        SpotifyAuthManager.shared.exchangeCodeForToken(code: code) { success in
-//            DispatchQueue.main.async {
-//                let vc = TapBarViewController()
-//                vc.modalPresentationStyle = .fullScreen
-//                self.navigationController?.present(vc, animated: true)
-//
-//            }
-//        }
-
     }
     
 
