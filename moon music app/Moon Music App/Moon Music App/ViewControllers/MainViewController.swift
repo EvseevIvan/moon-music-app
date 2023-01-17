@@ -9,28 +9,16 @@ import UIKit
 import Spotify_Kit
 class MainViewController: UIViewController {
 
+    let viewModel = MainViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
         
-        
-//        SpotifyAPIManager.shared.getTopContent(
-//          .tracks,
-//          for: .lifetime
-//        ) { result in
-//          switch result {
-//            case .success(let tracks):
-//              for track in tracks {
-//                  print(track.name)
-//                  print(track.artist)
-//                  print(track.preview_url)
-//                  // ...
-//              }
-//            case .failure(let error):
-//              print(error.localizedDescription)
-//              break
-//          }
-//        }
+        viewModel.getNewReleases(accessToken: accessToken) { newAlbums in
+            self.viewModel.newAlbums = newAlbums
+        }
+
     }
 
 

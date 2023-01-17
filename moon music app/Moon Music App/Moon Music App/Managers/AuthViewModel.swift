@@ -8,12 +8,13 @@
 import Foundation
 
 
+let clientID = "39c7757d887d42c188800b0054d32bf1"
+let clientSecret = "5c9893f7c5b84699b5e74befd66658a8"
+let redirectURL = "https://github.com/EvseevIvan"
+var accessToken = ""
+
 class AuthViewModel {
     
-    let clientID = "39c7757d887d42c188800b0054d32bf1"
-    let clientSecret = "5c9893f7c5b84699b5e74befd66658a8"
-    let redirectURL = "https://github.com/EvseevIvan"
-    var accessToken = ""
     
     public var signInURL: URL? {
         let scopes = "user-read-private"
@@ -26,7 +27,7 @@ class AuthViewModel {
     
     func getAccessToken(code: String, redirectURL: String, grantType: String, completion: @escaping (String) -> Void) {
         NetworkManager.shared.getAccessToken(code: code, redirectURL: redirectURL, grantType: grantType) { token in
-            self.accessToken = token
+            accessToken = token
             completion(token)
         }
     }

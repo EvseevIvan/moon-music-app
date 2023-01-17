@@ -49,15 +49,18 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         }
         webView.isHidden = true
     
-        print(code)
         
-        viewModel.getAccessToken(code: code, redirectURL: viewModel.redirectURL, grantType: "authorization_code") { token in
+        viewModel.getAccessToken(code: code, redirectURL: redirectURL, grantType: "authorization_code") { token in
+            print(token)
+            accessToken = token
             let vc = TapBarViewController()
             vc.modalPresentationStyle = .fullScreen
             self.navigationController?.present(vc, animated: true)
-            print(self.viewModel.accessToken)
-            
+//            NetworkManager().getTopArtists(accessToken: token) {
+//
+//            }
         }
+        
     }
     
 

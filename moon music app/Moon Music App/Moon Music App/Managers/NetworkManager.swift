@@ -11,7 +11,6 @@ import Alamofire
 class NetworkManager {
     
     static var shared = NetworkManager()
-
     
     func getAccessToken(code: String, redirectURL: String, grantType: String, completion: @escaping (String) -> Void) {
         let userParams: Parameters = [
@@ -39,5 +38,28 @@ class NetworkManager {
             }
         }
     }
+    
+    func getNewReleases(accessToken: String, completion: @escaping ([Item]) -> Void) {
+
+        let headers: HTTPHeaders = [
+          "Content-Type": "application/json",
+          "Authorization": "Bearer \(accessToken)"
+        ]
+
+        let genresRequest = AF.request("https://api.spotify.com/v1/browse/new-releases", method: .get, headers: headers)
+
+        genresRequest.responseDecodable(of: NewAlbums.self) { response in
+            do {
+                var newAlbums: [Item] = []
+                newAlbums = try response.result.get().albums.items
+                completion(newAlbums)
+
+            }
+            catch {
+                print("error: \(error)")
+            }
+        }
+    }
+    
     
 }
