@@ -39,6 +39,8 @@ class AuthenticationViewController: UIViewController, WKNavigationDelegate {
         webView.frame = view.bounds
     }
     
+
+    
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         guard let url = webView.url else {
             return

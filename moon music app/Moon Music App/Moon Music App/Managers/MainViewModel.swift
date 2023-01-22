@@ -10,11 +10,12 @@ import Foundation
 
 class MainViewModel {
     
-    var newAlbums: [Item] = []
+    var newAlbums1: [Item] = []
     
-    func getNewReleases(accessToken: String, completion: @escaping ([Item]) -> Void) {
+    func getNewReleases(accessToken: String, completion: @escaping () -> Void) {
         NetworkManager.shared.getNewReleases(accessToken: accessToken) { newAlbums in
-            completion(newAlbums)
+            self.newAlbums1 = newAlbums
+            completion()
         }
     }
     
