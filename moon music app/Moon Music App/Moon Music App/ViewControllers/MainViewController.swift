@@ -39,8 +39,9 @@ class MainViewController: UIViewController {
         
         
         collectionView.frame = view.bounds
-        viewModel.getNewReleases(accessToken: accessToken) {
+        viewModel.getTrack() {
             self.collectionView.reloadData()
+            print(self.viewModel.recTracks)
         }
         
     }
@@ -75,12 +76,12 @@ class MainViewController: UIViewController {
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.newAlbums1.count
+        return viewModel.recTracks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewAlbumCollectionViewCell.identifier, for: indexPath) as! NewAlbumCollectionViewCell
-        cell.configure(with: viewModel.newAlbums1[indexPath.row])
+        cell.configure(with: viewModel.recTracks[indexPath.row])
         return cell
     }
     

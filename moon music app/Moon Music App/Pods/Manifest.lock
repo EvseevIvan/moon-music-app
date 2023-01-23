@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (5.6.4)
+  - SDWebImage (5.14.3):
+    - SDWebImage/Core (= 5.14.3)
+  - SDWebImage/Core (5.14.3)
+  - Spotify-Kit (0.2.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - SDWebImage (~> 5.0)
+  - Spotify-Kit
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SDWebImage
+    - Spotify-Kit
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  SDWebImage: 9c36e66c8ce4620b41a7407698dda44211a96764
+  Spotify-Kit: bd80acd5c44c17dcea6d663003a263c206d8a256
+
+PODFILE CHECKSUM: b4e3e769f2442f458ad2f78c83d6d83870ebc608
+
+COCOAPODS: 1.11.3

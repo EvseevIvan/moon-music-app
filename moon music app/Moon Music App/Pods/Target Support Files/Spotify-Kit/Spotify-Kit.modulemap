@@ -1,0 +1,6 @@
+framework module Spotify_Kit {
+  umbrella header "Spotify-Kit-umbrella.h"
+
+  export *
+  module * { export * }
+}

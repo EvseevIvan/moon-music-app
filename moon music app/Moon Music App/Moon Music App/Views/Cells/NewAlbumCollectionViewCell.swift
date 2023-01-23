@@ -34,14 +34,15 @@ class NewAlbumCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with album: Item) {
+    func configure(with album: Track) {
         
         nameOfAlbum.text = album.name
-        guard let image = album.images.first?.url else {
-            return
-        }
-        guard let url = URL(string: image) else { return }
-        imageOfAlbum.sd_setImage(with: url, completed: nil)
+//        guard let image = album.images.first?.url else {
+//            return
+//        }
+//        guard let url = URL(string: image) else { return }
+//        imageOfAlbum.sd_setImage(with: url, completed: nil)
+        imageOfAlbum.image = UIImage(systemName: "play.fill")
         imageOfAlbum.layer.cornerRadius = 10
 
     }

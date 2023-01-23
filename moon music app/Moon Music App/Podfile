@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Moon Music App' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Moon Music App
+
+pod 'Spotify-Kit'
+pod 'Alamofire'
+pod 'SDWebImage', '~> 5.0'
+
+end

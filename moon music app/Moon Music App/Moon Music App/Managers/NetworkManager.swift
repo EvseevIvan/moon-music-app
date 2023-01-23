@@ -61,5 +61,57 @@ class NetworkManager {
         }
     }
     
+    func getTrack(completion: @escaping ([Track]) -> Void) {
+        let userParams: Parameters = [
+            "limit": 1,
+            "seed_genres": "classical"
+        ]
+        
+        let headers: HTTPHeaders = [
+          "Authorization": "Bearer \(accessToken)",
+          "Content-Type": "application/json"
+        ]
+        
+        let genresRequest = AF.request("https://api.spotify.com/v1/recommendations", method: .get, parameters: userParams, headers: headers)
+        
+        genresRequest.responseDecodable(of: Welcome.self) { response in
+            do {
+                
+                let data = try response.result.get().tracks
+                completion(data)
+
+            }
+            catch {
+                print("error: \(error)")
+            }
+        }
+    }
+    
+    func getTrack1(completion: @escaping (String?) -> Void) {
+        let userParams: Parameters = [
+            "limit": 1,
+            "seed_genres": "classical"
+        ]
+        
+        let headers: HTTPHeaders = [
+          "Authorization": "Bearer \(accessToken)",
+          "Content-Type": "application/json"
+        ]
+        
+        let genresRequest = AF.request("https://api.spotify.com/v1/recommendations", method: .get, parameters: userParams, headers: headers)
+        
+        genresRequest.responseDecodable(of: Welcome.self) { response in
+            do {
+                
+                let data = try response.result.get().tracks.first?.previewURL
+                completion(data)
+
+            }
+            catch {
+                print("error: \(error)")
+            }
+        }
+    }
+    
     
 }

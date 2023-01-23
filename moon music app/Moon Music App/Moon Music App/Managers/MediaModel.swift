@@ -121,3 +121,71 @@ class JSONNull: Codable, Hashable {
         try container.encodeNil()
     }
 }
+
+struct Welcome: Codable {
+//    let seeds: [Seed]
+    let tracks: [Track]
+}
+
+// MARK: - Seed
+//struct Seed: Codable {
+//    let afterFilteringSize, afterRelinkingSize: Int
+//    let href, id: String
+//    let initialPoolSize: Int
+//    let type: String
+//}
+
+// MARK: - Track
+struct Track: Codable {
+    let artists: [LinkedFrom]
+    let availableMarkets: [String]
+    let discNumber, durationMS: Int
+    let explicit: Bool
+    let externalUrls: ExternalUrls
+    let href, id: String
+//    let isPlayable: Bool
+//    let linkedFrom: LinkedFrom
+//    let restrictions: Restrictions
+    let name, previewURL: String
+    let trackNumber: Int
+    let type, uri: String
+    let isLocal: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case artists
+        case availableMarkets = "available_markets"
+        case discNumber = "disc_number"
+        case durationMS = "duration_ms"
+        case explicit
+        case externalUrls = "external_urls"
+        case href, id
+//        case isPlayable = "is_playable"
+//        case linkedFrom = "linked_from"
+        case name
+//        case restrictions
+        case previewURL = "preview_url"
+        case trackNumber = "track_number"
+        case type, uri
+        case isLocal = "is_local"
+    }
+}
+
+// MARK: - LinkedFrom
+struct LinkedFrom: Codable {
+    let externalUrls: ExternalUrls
+    let href, id: String
+    let name: String?
+    let type, uri: String
+
+    enum CodingKeys: String, CodingKey {
+        case externalUrls = "external_urls"
+        case href, id, name, type, uri
+    }
+}
+
+
+
+// MARK: - Restrictions
+struct Restrictions: Codable {
+    let reason: String
+}

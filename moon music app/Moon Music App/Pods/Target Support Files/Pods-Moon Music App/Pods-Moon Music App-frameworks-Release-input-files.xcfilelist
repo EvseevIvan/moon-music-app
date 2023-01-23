@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Moon Music App/Pods-Moon Music App-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/Spotify-Kit/Spotify_Kit.framework

@@ -7,8 +7,10 @@
 
 import UIKit
 
+
 class TapBarViewController: UITabBarController {
 
+    
     var playerView: UIView = {
         let view = UIView()
         view.addBlur(style: .dark)
