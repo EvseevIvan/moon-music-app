@@ -74,20 +74,20 @@ class PlayerViewController: UIViewController {
     
     @objc func playAudioButtonTapped(sender: UIButton) {
         
-        NetworkManager().getTrack1 { url1 in
-            if sender.currentImage == UIImage(systemName: "play.fill") {
-                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-                if url1 != nil {
-                    let url = URL(string: url1 ?? "")
-                    self.downloadFileFromURL(url: url!)
-                }
-
-                
-            } else {
-                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-                self.audioPlayer.stop()
-            }
-        }
+//        NetworkManager().getTrack1 { url1 in
+//            if sender.currentImage == UIImage(systemName: "play.fill") {
+//                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+//                if url1 != nil {
+//                    let url = URL(string: url1 ?? "")
+//                    self.downloadFileFromURL(url: url!)
+//                }
+//
+//                
+//            } else {
+//                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+//                self.audioPlayer.stop()
+//            }
+//        }
     }
 
     func downloadFileFromURL(url: URL){

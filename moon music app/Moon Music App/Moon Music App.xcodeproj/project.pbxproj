@@ -19,6 +19,7 @@
 		4474B5B2296C908F00FAAF38 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B1296C908F00FAAF38 /* ProfileViewController.swift */; };
 		4474B5B4296C90B700FAAF38 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B3296C90B700FAAF38 /* PlayerViewController.swift */; };
 		4474B5B6296C975700FAAF38 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */; };
+		860C7CAA2982EBF5006BE2B7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C7CA92982EBF5006BE2B7 /* Player.swift */; };
 		864E24792977033D005FE918 /* MediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864E24782977033D005FE918 /* MediaModel.swift */; };
 		86B1E07D29787A660071D814 /* NewAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1E07C29787A660071D814 /* NewAlbumCollectionViewCell.swift */; };
 		86D90354297348610060A310 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D90353297348610060A310 /* NetworkManager.swift */; };
@@ -46,6 +47,7 @@
 		4474B5B5296C975700FAAF38 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		65BB84B9C78A2DC990E40C43 /* Pods-Moon Music App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moon Music App.release.xcconfig"; path = "Target Support Files/Pods-Moon Music App/Pods-Moon Music App.release.xcconfig"; sourceTree = "<group>"; };
 		65D1166317F33089C48AEB1D /* Pods-Moon Music App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moon Music App.debug.xcconfig"; path = "Target Support Files/Pods-Moon Music App/Pods-Moon Music App.debug.xcconfig"; sourceTree = "<group>"; };
+		860C7CA92982EBF5006BE2B7 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		864E24782977033D005FE918 /* MediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MediaModel.swift; path = "Moon Music App/Managers/MediaModel.swift"; sourceTree = SOURCE_ROOT; };
 		86B1E07C29787A660071D814 /* NewAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		86D90353297348610060A310 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				86B1E07B297879FE0071D814 /* Cells */,
+				860C7CA92982EBF5006BE2B7 /* Player.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				4474B5AE296C903E00FAAF38 /* LibraryViewController.swift in Sources */,
 				4474B5B2296C908F00FAAF38 /* ProfileViewController.swift in Sources */,
 				86D90358297350030060A310 /* AuthViewModel.swift in Sources */,
+				860C7CAA2982EBF5006BE2B7 /* Player.swift in Sources */,
 				4474B593296C8B6A00FAAF38 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

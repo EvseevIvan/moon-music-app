@@ -7,6 +7,10 @@
 
 import UIKit
 import Spotify_Kit
+
+var playlistToPlay: [Track] = []
+var playingNow: [Track] = []
+
 class MainViewController: UIViewController {
     
     let viewModel = MainViewModel()
@@ -20,6 +24,7 @@ class MainViewController: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
+    weak var delegate: PlayerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +43,10 @@ class MainViewController: UIViewController {
         collectionView.register(NewAlbumCollectionViewCell.self, forCellWithReuseIdentifier: NewAlbumCollectionViewCell.identifier)
         
         
+        
         collectionView.frame = view.bounds
         viewModel.getTrack() {
             self.collectionView.reloadData()
-            print(self.viewModel.recTracks)
         }
         
     }
@@ -76,13 +81,20 @@ class MainViewController: UIViewController {
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.recTracks.count
+        return viewModel.album?.tracks.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewAlbumCollectionViewCell.identifier, for: indexPath) as! NewAlbumCollectionViewCell
-        cell.configure(with: viewModel.recTracks[indexPath.row])
+        guard let album = viewModel.album else { return UICollectionViewCell() }
+        cell.configure(with: album, indexPath: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let album = viewModel.album else { return }
+        delegate?.playMusic(album: album, indexPath: indexPath)
+        
     }
     
     

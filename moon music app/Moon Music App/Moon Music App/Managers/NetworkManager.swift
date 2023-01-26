@@ -39,45 +39,69 @@ class NetworkManager {
         }
     }
     
-    func getNewReleases(accessToken: String, completion: @escaping ([Item]) -> Void) {
-
-        let headers: HTTPHeaders = [
-          "Content-Type": "application/json",
-          "Authorization": "Bearer \(accessToken)"
-        ]
-
-        let genresRequest = AF.request("https://api.spotify.com/v1/browse/new-releases", method: .get, headers: headers)
-
-        genresRequest.responseDecodable(of: NewAlbums.self) { response in
-            do {
-                var newAlbums: [Item] = []
-                newAlbums = try response.result.get().albums.items
-                completion(newAlbums)
-
-            }
-            catch {
-                print("error: \(error)")
-            }
-        }
-    }
+//    func getNewReleases(accessToken: String, completion: @escaping ([Track]) -> Void) {
+//
+//        let headers: HTTPHeaders = [
+//          "Content-Type": "application/json",
+//          "Authorization": "Bearer \(accessToken)"
+//        ]
+//
+//        let genresRequest = AF.request("https://api.spotify.com/v1/browse/new-releases", method: .get, headers: headers)
+//
+//        genresRequest.responseDecodable(of: Album.self) { response in
+//            do {
+//                var newAlbums: [Track] = []
+//                newAlbums = try response.result.get().
+//                completion(newAlbums)
+//
+//            }
+//            catch {
+//                print("error: \(error)")
+//            }
+//        }
+//    }
     
-    func getTrack(completion: @escaping ([Track]) -> Void) {
-        let userParams: Parameters = [
-            "limit": 1,
-            "seed_genres": "classical"
-        ]
-        
+//    func getTrack(completion: @escaping ([Track]) -> Void) {
+//        let userParams: Parameters = [
+//            "limit": 1,
+//            "seed_genres": "classical"
+//        ]
+//
+//        let headers: HTTPHeaders = [
+//          "Authorization": "Bearer \(accessToken)",
+//          "Content-Type": "application/json"
+//        ]
+//
+//        let genresRequest = AF.request("https://api.spotify.com/v1/recommendations", method: .get, parameters: userParams, headers: headers)
+//
+//        genresRequest.responseDecodable(of: Album.self) { response in
+//            do {
+//
+//                let data = try response.result.get().
+//                playlistToPlay = data
+//                completion(data)
+//
+//            }
+//            catch {
+//                print("error: \(error)")
+//            }
+//        }
+//    }
+    
+    func getTrack1(completion: @escaping (Album) -> Void) {
+
         let headers: HTTPHeaders = [
-          "Authorization": "Bearer \(accessToken)",
-          "Content-Type": "application/json"
+            "Accept": "application/json",
+            "Authorization": "Bearer \(accessToken)",
+            "Content-Type": "application/json"
         ]
-        
-        let genresRequest = AF.request("https://api.spotify.com/v1/recommendations", method: .get, parameters: userParams, headers: headers)
-        
-        genresRequest.responseDecodable(of: Welcome.self) { response in
+
+        let genresRequest = AF.request("https://api.spotify.com/v1/albums/6IDc214jcfQW2wb7YLABev", method: .get, headers: headers)
+
+        genresRequest.responseDecodable(of: Album.self) { response in
             do {
-                
-                let data = try response.result.get().tracks
+
+                let data = try response.result.get()
                 completion(data)
 
             }
@@ -87,31 +111,7 @@ class NetworkManager {
         }
     }
     
-    func getTrack1(completion: @escaping (String?) -> Void) {
-        let userParams: Parameters = [
-            "limit": 1,
-            "seed_genres": "classical"
-        ]
-        
-        let headers: HTTPHeaders = [
-          "Authorization": "Bearer \(accessToken)",
-          "Content-Type": "application/json"
-        ]
-        
-        let genresRequest = AF.request("https://api.spotify.com/v1/recommendations", method: .get, parameters: userParams, headers: headers)
-        
-        genresRequest.responseDecodable(of: Welcome.self) { response in
-            do {
-                
-                let data = try response.result.get().tracks.first?.previewURL
-                completion(data)
-
-            }
-            catch {
-                print("error: \(error)")
-            }
-        }
-    }
+    
     
     
 }

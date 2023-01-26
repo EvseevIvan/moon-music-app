@@ -10,19 +10,19 @@ import Foundation
 
 class MainViewModel {
     
-    var newAlbums1: [Item] = []
-    var recTracks: [Track] = []
+    var newAlbums1: Album?
+    var album: Album?
     
-    func getNewReleases(accessToken: String, completion: @escaping () -> Void) {
-        NetworkManager.shared.getNewReleases(accessToken: accessToken) { newAlbums in
-            self.newAlbums1 = newAlbums
-            completion()
-        }
-    }
+//    func getNewReleases(accessToken: String, completion: @escaping () -> Void) {
+//        NetworkManager.shared.getNewReleases(accessToken: accessToken) { newAlbums in
+//            self.newAlbums1 = newAlbums
+//            completion()
+//        }
+//    }
     
     func getTrack(completion: @escaping () -> Void) {
-        NetworkManager.shared.getTrack() { tracks1 in
-            self.recTracks = tracks1
+        NetworkManager.shared.getTrack1() { album in
+            self.album = album
             completion()
         }
     }
