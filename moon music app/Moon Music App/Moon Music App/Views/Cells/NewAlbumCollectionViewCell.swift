@@ -34,17 +34,7 @@ class NewAlbumCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func configure(with track: Track) {
-//
-//        nameOfAlbum.text = track.name
-////        let image = track.album.images[0].url
-////        guard let url = URL(string: image) else { return }
-////        imageOfAlbum.sd_setImage(with: url, completed: nil)
-//        imageOfAlbum.image = UIImage(systemName: "play.fill")
-//        imageOfAlbum.layer.cornerRadius = 10
-//
-//    }
-//
+
     func configure(with album: Album, indexPath: IndexPath) {
         self.nameOfAlbum.text = album.tracks.items[indexPath.row].name
 //        self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name

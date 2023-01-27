@@ -61,34 +61,8 @@ class NetworkManager {
 //        }
 //    }
     
-//    func getTrack(completion: @escaping ([Track]) -> Void) {
-//        let userParams: Parameters = [
-//            "limit": 1,
-//            "seed_genres": "classical"
-//        ]
-//
-//        let headers: HTTPHeaders = [
-//          "Authorization": "Bearer \(accessToken)",
-//          "Content-Type": "application/json"
-//        ]
-//
-//        let genresRequest = AF.request("https://api.spotify.com/v1/recommendations", method: .get, parameters: userParams, headers: headers)
-//
-//        genresRequest.responseDecodable(of: Album.self) { response in
-//            do {
-//
-//                let data = try response.result.get().
-//                playlistToPlay = data
-//                completion(data)
-//
-//            }
-//            catch {
-//                print("error: \(error)")
-//            }
-//        }
-//    }
-    
-    func getTrack1(completion: @escaping (Album) -> Void) {
+
+    func getAlbum(completion: @escaping (Album) -> Void) {
 
         let headers: HTTPHeaders = [
             "Accept": "application/json",

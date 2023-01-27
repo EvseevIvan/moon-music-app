@@ -38,6 +38,7 @@ class Player: UIView {
     var nameOfTrack: UILabel = {
         let label = UILabel()
         label.text = "LLLLL"
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 10)
         return label
@@ -46,6 +47,7 @@ class Player: UIView {
     var nameOfArist: UILabel = {
         let label = UILabel()
         label.text = "AAAAAA"
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = .white
         return label
@@ -102,7 +104,7 @@ class Player: UIView {
 //            nameOfTrack.widthAnchor.constraint(equalToConstant: 100),
 //            nameOfTrack.heightAnchor.constraint(equalToConstant: 20),
             
-            nameOfArist.leadingAnchor.constraint(equalTo: playerView.trailingAnchor, constant: 10),
+            nameOfArist.leadingAnchor.constraint(equalTo: playerImage.trailingAnchor, constant: 10),
             nameOfArist.centerXAnchor.constraint(equalTo: playerView.centerXAnchor, constant: -20),
             nameOfArist.widthAnchor.constraint(equalToConstant: 100),
             nameOfArist.heightAnchor.constraint(equalToConstant: 20),

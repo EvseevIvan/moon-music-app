@@ -6,10 +6,7 @@
 //
 
 import UIKit
-import Spotify_Kit
 
-var playlistToPlay: [Track] = []
-var playingNow: [Track] = []
 
 class MainViewController: UIViewController {
     

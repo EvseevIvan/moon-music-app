@@ -22,34 +22,7 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
         return player
     }()
     
-//    var playerView: UIView = {
-//        let view = UIView()
-//        view.addBlur(style: .dark)
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//
-//    var openPlayerButton: UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    var playerImage: UIImageView = {
-//        let image = UIImageView()
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//        image.image = UIImage(systemName: "heart.fill")
-//        return image
-//    }()
-//    
-//    var playMusicButton: UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setImage(UIImage(systemName: "play.fill"), for: .normal)
-//        button.addTarget(self, action: #selector(playAudioButtonTapped), for: .touchUpInside)
-//        return button
-//    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,11 +82,7 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
     func setupConstraints() {
 
         view.addSubview(player)
-//        view.addSubview(playerView)
-        
-//        playerView.addSubview(playerImage)
-//        playerView.addSubview(openPlayerButton)
-//        playerView.addSubview(playMusicButton)
+
 
 
         NSLayoutConstraint.activate([
@@ -123,25 +92,6 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
             player.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
             player.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-//            playerView.widthAnchor.constraint(equalToConstant: view.frame.width),
-//            playerView.heightAnchor.constraint(equalToConstant: 70),
-//            playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
-//            playerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//
-//            playerImage.widthAnchor.constraint(equalToConstant: 30),
-//            playerImage.heightAnchor.constraint(equalToConstant: 30),
-//            playerImage.centerXAnchor.constraint(equalTo: playerView.centerXAnchor),
-//            playerImage.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
-//
-//            openPlayerButton.topAnchor.constraint(equalTo: playerView.topAnchor),
-//            openPlayerButton.bottomAnchor.constraint(equalTo: playerView.bottomAnchor),
-//            openPlayerButton.trailingAnchor.constraint(equalTo: playerView.trailingAnchor, constant: -40),
-//            openPlayerButton.leadingAnchor.constraint(equalTo: playerView.leadingAnchor),
-//
-//            playMusicButton.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
-//            playMusicButton.widthAnchor.constraint(equalToConstant: 30),
-//            playMusicButton.heightAnchor.constraint(equalToConstant: 30),
-//            playMusicButton.trailingAnchor.constraint(equalTo: playerView.trailingAnchor, constant: -10)
 
 
         ])
