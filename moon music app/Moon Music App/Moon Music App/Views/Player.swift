@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 protocol PlayerDelegate: NSObject {
-    func playMusic(album: Album, indexPath: IndexPath)
+    func configurePlayer(album: Album, indexPath: IndexPath)
 }
 
 class Player: UIView {
@@ -40,7 +40,7 @@ class Player: UIView {
         label.text = "LLLLL"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     
@@ -48,7 +48,7 @@ class Player: UIView {
         let label = UILabel()
         label.text = "AAAAAA"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .white
         return label
     }()
@@ -67,12 +67,15 @@ class Player: UIView {
     }
         
     func configure(with album: Album, indexPath: IndexPath) {
+        self.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         self.nameOfTrack.text = album.tracks.items[indexPath.row].name
         self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name
         let url = URL(string: album.images[0].url)
         self.playerImage.sd_setImage(with: url)
         self.playerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
     }
+    
+
     
     func setupConstraints() {
         
@@ -94,20 +97,20 @@ class Player: UIView {
             playerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             playerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
-            playerImage.widthAnchor.constraint(equalToConstant: 30),
-            playerImage.heightAnchor.constraint(equalToConstant: 30),
-            playerImage.leadingAnchor.constraint(equalTo: playerView.leadingAnchor),
+            playerImage.widthAnchor.constraint(equalToConstant: 43),
+            playerImage.heightAnchor.constraint(equalToConstant: 43),
+            playerImage.leadingAnchor.constraint(equalTo: playerView.leadingAnchor, constant: 20),
             playerImage.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
             
-//            nameOfTrack.leadingAnchor.constraint(equalTo: playerImage.trailingAnchor),
-//            nameOfTrack.centerYAnchor.constraint(equalTo: playerImage.centerYAnchor),
-//            nameOfTrack.widthAnchor.constraint(equalToConstant: 100),
-//            nameOfTrack.heightAnchor.constraint(equalToConstant: 20),
-            
             nameOfArist.leadingAnchor.constraint(equalTo: playerImage.trailingAnchor, constant: 10),
-            nameOfArist.centerXAnchor.constraint(equalTo: playerView.centerXAnchor, constant: -20),
+            nameOfArist.centerYAnchor.constraint(equalTo: playerImage.centerYAnchor, constant: 10),
             nameOfArist.widthAnchor.constraint(equalToConstant: 100),
             nameOfArist.heightAnchor.constraint(equalToConstant: 20),
+            
+            nameOfTrack.leadingAnchor.constraint(equalTo: playerImage.trailingAnchor, constant: 10),
+            nameOfTrack.centerYAnchor.constraint(equalTo: playerImage.centerYAnchor, constant: -10),
+            nameOfTrack.widthAnchor.constraint(equalToConstant: 100),
+            nameOfTrack.heightAnchor.constraint(equalToConstant: 20),
 
             openPlayerButton.topAnchor.constraint(equalTo: playerView.topAnchor),
             openPlayerButton.bottomAnchor.constraint(equalTo: playerView.bottomAnchor),
@@ -115,12 +118,10 @@ class Player: UIView {
             openPlayerButton.leadingAnchor.constraint(equalTo: playerView.leadingAnchor),
             
             playMusicButton.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
-            playMusicButton.widthAnchor.constraint(equalToConstant: 30),
-            playMusicButton.heightAnchor.constraint(equalToConstant: 30),
+            playMusicButton.widthAnchor.constraint(equalToConstant: 43),
+            playMusicButton.heightAnchor.constraint(equalToConstant: 43),
             playMusicButton.trailingAnchor.constraint(equalTo: playerView.trailingAnchor, constant: -10)
             
-            
-
 
         ])
 

@@ -9,9 +9,10 @@ import UIKit
 import AVFoundation
 
 class TapBarViewController: UITabBarController, PlayerDelegate {
-    func playMusic(album: Album, indexPath: IndexPath) {
+    func configurePlayer(album: Album, indexPath: IndexPath) {
         player.configure(with: album, indexPath: indexPath)
     }
+    
     
     
     var audioPlayer: AVAudioPlayer!
@@ -27,7 +28,8 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        player.openPlayerButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+
         let mainVC = MainViewController()
         let searchVC = SearchViewController()
         let libraryVC = LibraryViewController()
