@@ -37,5 +37,13 @@ class AudioPlayer {
         
     }
     
+    func musicPause(task: String) {
+        if task == "pause" {
+            self.audioPlayer.pause()
+        } else {
+            self.audioPlayer.play()
+        }
+    }
+    
     
 }

@@ -20,6 +20,7 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
     var player: Player = {
         let player = Player()
         player.translatesAutoresizingMaskIntoConstraints = false
+        player.openPlayerButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return player
     }()
     
@@ -28,7 +29,6 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        player.openPlayerButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         let mainVC = MainViewController()
         let searchVC = SearchViewController()
@@ -102,50 +102,9 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
     
     @objc func playAudioButtonTapped(sender: UIButton) {
         
-//        NetworkManager().getTrack1 { url1 in
-//            if sender.currentImage == UIImage(systemName: "play.fill") {
-//                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-//                if url1 != nil {
-//                    let url = URL(string: url1 ?? "")
-//                    self.downloadFileFromURL(url: url!)
-//                }
-//
-//
-//            } else {
-//                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-//                self.audioPlayer.stop()
-//            }
-//        }
+
     }
 
-    func downloadFileFromURL(url: URL){
-        var downloadTask:URLSessionDownloadTask
-        downloadTask = URLSession.shared.downloadTask(with: url) { (url1, response, error) in
-            self.play(url: url1!)
-        }
-        downloadTask.resume()
-    }
-    
-    func play(url:URL) {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url as URL)
-            audioPlayer.prepareToPlay()
-            audioPlayer.volume = 2.0
-            audioPlayer.play()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        } catch {
-            print("AVAudioPlayer init failed")
-        }
-        
-    }
-    
-//    func playMusic(url: String) {
-//        let downloadUrl = URL(string: url)
-//        self.downloadFileFromURL(url: downloadUrl!)
-//        if playMusicButton.currentImage == UIImage(systemName: "play.fill") {
-//            playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-//        }
-//    }
+
 
 }

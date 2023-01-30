@@ -7,11 +7,11 @@
 
 import UIKit
 import AVFoundation
+import SDWebImage
 
 class PlayerViewController: UIViewController {
 
     var viewTranslation = CGPoint(x: 0, y: 0)
-    var audioPlayer:AVAudioPlayer!
     var playMusicButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -21,11 +21,22 @@ class PlayerViewController: UIViewController {
         return button
     }()
     
+    var imageOfTrack: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "heart.fill")
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configure(album: playingNow!)
     }
     
     override func viewDidLayoutSubviews() {
@@ -36,14 +47,19 @@ class PlayerViewController: UIViewController {
     func setupConstraints() {
 
         view.addSubview(playMusicButton)
+        view.addSubview(imageOfTrack)
 
         NSLayoutConstraint.activate([
 
+            imageOfTrack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageOfTrack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageOfTrack.widthAnchor.constraint(equalToConstant: 200),
+            imageOfTrack.heightAnchor.constraint(equalToConstant: 200),
 
-            playMusicButton.widthAnchor.constraint(equalToConstant: view.frame.width),
-            playMusicButton.heightAnchor.constraint(equalToConstant: 70),
+            playMusicButton.widthAnchor.constraint(equalToConstant: 100),
+            playMusicButton.heightAnchor.constraint(equalToConstant: 100),
             playMusicButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
-            playMusicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            playMusicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
 
 
@@ -74,42 +90,22 @@ class PlayerViewController: UIViewController {
     
     @objc func playAudioButtonTapped(sender: UIButton) {
         
-//        NetworkManager().getTrack1 { url1 in
-//            if sender.currentImage == UIImage(systemName: "play.fill") {
-//                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-//                if url1 != nil {
-//                    let url = URL(string: url1 ?? "")
-//                    self.downloadFileFromURL(url: url!)
-//                }
-//
-//                
-//            } else {
-//                sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-//                self.audioPlayer.stop()
-//            }
-//        }
-    }
-
-    func downloadFileFromURL(url: URL){
-        var downloadTask:URLSessionDownloadTask
-        downloadTask = URLSession.shared.downloadTask(with: url) { (url, response, error) in
-            self.play(url: url!)
-        }
-        downloadTask.resume()
     }
     
-    func play(url:URL) {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url as URL)
-            audioPlayer.prepareToPlay()
-            audioPlayer.volume = 2.0
-            audioPlayer.play()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        } catch {
-            print("AVAudioPlayer init failed")
+    func configure(album: Album) {
+        print(album.images[0].url)
+        let url = URL(string: album.images[0].url)
+        self.imageOfTrack.sd_setImage(with: url)
+        self.imageOfTrack.sd_imageIndicator = SDWebImageActivityIndicator.white
+        if AudioPlayer.shared.audioPlayer.isPlaying {
+            playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        } else {
+            playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
-        
     }
+    
+    
+
+
 
 }

@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 import SDWebImage
 
+var playingNow: Album?
+
 protocol PlayerDelegate: NSObject {
     func configurePlayer(album: Album, indexPath: IndexPath)
 }
 
 class Player: UIView {
         
+    
     var playerView: UIView = {
         let view = UIView()
         view.addBlur(style: .dark)
@@ -57,7 +60,7 @@ class Player: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
-//        button.addTarget(self, action: #selector(playAudioButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(playAudioButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -67,6 +70,7 @@ class Player: UIView {
     }
         
     func configure(with album: Album, indexPath: IndexPath) {
+        playingNow = album
         self.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         self.nameOfTrack.text = album.tracks.items[indexPath.row].name
         self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name
@@ -126,6 +130,18 @@ class Player: UIView {
         ])
 
     }
+    
+    @objc func playAudioButtonTapped(sender: UIButton) {
+        
+        if playMusicButton.currentImage == UIImage(systemName: "pause.fill") {
+            AudioPlayer.shared.musicPause(task: "pause")
+            playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        } else {
+            AudioPlayer.shared.musicPause(task: "play")
+            playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        }
+    }
+    
     
     
 }
