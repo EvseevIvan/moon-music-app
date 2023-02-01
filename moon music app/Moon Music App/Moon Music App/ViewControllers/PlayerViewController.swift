@@ -23,15 +23,34 @@ class PlayerViewController: UIViewController {
     
     var imageOfTrack: UIImageView = {
         let image = UIImageView()
+        image.layer.cornerRadius = 15
+        image.clipsToBounds = true
         image.image = UIImage(systemName: "heart.fill")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
+    var nameOfTrack: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "DAFLJSFLJDSLKJ"
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
+    
+    var nameOfArist: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.textColor = .white
+        return label
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
+        view.addBlur(style: .dark)
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
     }
     
@@ -48,19 +67,30 @@ class PlayerViewController: UIViewController {
 
         view.addSubview(playMusicButton)
         view.addSubview(imageOfTrack)
+        view.addSubview(nameOfArist)
+        view.addSubview(nameOfTrack)
 
         NSLayoutConstraint.activate([
 
             imageOfTrack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageOfTrack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageOfTrack.widthAnchor.constraint(equalToConstant: 200),
-            imageOfTrack.heightAnchor.constraint(equalToConstant: 200),
+            imageOfTrack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -160),
+            imageOfTrack.widthAnchor.constraint(equalToConstant: view.frame.width - 60),
+            imageOfTrack.heightAnchor.constraint(equalToConstant: view.frame.width - 60),
 
             playMusicButton.widthAnchor.constraint(equalToConstant: 100),
             playMusicButton.heightAnchor.constraint(equalToConstant: 100),
             playMusicButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
-            playMusicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            playMusicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+            nameOfTrack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            nameOfTrack.topAnchor.constraint(equalTo: imageOfTrack.bottomAnchor, constant: 30),
+            nameOfTrack.widthAnchor.constraint(equalToConstant: 170),
+            nameOfTrack.heightAnchor.constraint(equalToConstant: 30),
+            
+            nameOfArist.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            nameOfArist.topAnchor.constraint(equalTo: nameOfTrack.bottomAnchor),
+            nameOfArist.widthAnchor.constraint(equalToConstant: 170),
+            nameOfArist.heightAnchor.constraint(equalToConstant: 30)
 
 
         ])
@@ -102,6 +132,8 @@ class PlayerViewController: UIViewController {
         } else {
             playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
+        self.nameOfTrack.text = album.tracks.items[0].name
+        self.nameOfArist.text = album.artists[0].name
     }
     
     
