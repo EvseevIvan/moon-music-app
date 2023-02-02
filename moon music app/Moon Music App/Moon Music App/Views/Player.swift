@@ -77,6 +77,7 @@ class Player: UIView {
         let url = URL(string: album.images[0].url)
         self.playerImage.sd_setImage(with: url)
         self.playerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
+
     }
     
 

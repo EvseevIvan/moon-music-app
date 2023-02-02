@@ -47,11 +47,25 @@ class PlayerViewController: UIViewController {
         return label
     }()
     
+    var slider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.minimumValue = 0
+        slider.maximumValue = 30
+        slider.setValue(0, animated: false)
+        slider.minimumTrackTintColor = .green
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .black
+        slider.addTarget(self, action: #selector(changeAudioTime), for: .valueChanged)
+        return slider
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addBlur(style: .dark)
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
+        
+        _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +83,7 @@ class PlayerViewController: UIViewController {
         view.addSubview(imageOfTrack)
         view.addSubview(nameOfArist)
         view.addSubview(nameOfTrack)
+        view.addSubview(slider)
 
         NSLayoutConstraint.activate([
 
@@ -90,7 +105,12 @@ class PlayerViewController: UIViewController {
             nameOfArist.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             nameOfArist.topAnchor.constraint(equalTo: nameOfTrack.bottomAnchor),
             nameOfArist.widthAnchor.constraint(equalToConstant: 170),
-            nameOfArist.heightAnchor.constraint(equalToConstant: 30)
+            nameOfArist.heightAnchor.constraint(equalToConstant: 30),
+            
+            slider.widthAnchor.constraint(equalToConstant: view.frame.width - 60),
+            slider.heightAnchor.constraint(equalToConstant: 20),
+            slider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            slider.topAnchor.constraint(equalTo: nameOfArist.bottomAnchor, constant: 30)
 
 
         ])
@@ -120,6 +140,19 @@ class PlayerViewController: UIViewController {
     
     @objc func playAudioButtonTapped(sender: UIButton) {
         
+    }
+    
+    @objc func changeAudioTime(sender: UISlider) {
+        AudioPlayer.shared.audioPlayer.stop()
+        AudioPlayer.shared.audioPlayer.currentTime = TimeInterval(slider.value)
+        AudioPlayer.shared.audioPlayer.prepareToPlay()
+        AudioPlayer.shared.audioPlayer.play()
+
+
+    }
+    
+    @objc func updateSlider(sender: UISlider) {
+        slider.value = Float(AudioPlayer.shared.audioPlayer.currentTime)
     }
     
     func configure(album: Album) {
