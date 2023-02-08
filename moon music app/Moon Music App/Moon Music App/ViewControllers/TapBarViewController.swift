@@ -80,6 +80,8 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
         present(vc, animated: true)
        }
     
+
+    
     
     func setupConstraints() {
 
@@ -100,10 +102,7 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
 
     }
     
-    @objc func playAudioButtonTapped(sender: UIButton) {
-        
-
-    }
+    @objc func playAudioButtonTapped(sender: UIButton) { }
 
 
 

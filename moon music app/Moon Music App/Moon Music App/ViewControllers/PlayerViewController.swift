@@ -15,9 +15,9 @@ class PlayerViewController: UIViewController {
     var playMusicButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("LSDLSJDLKGJLSKFJGLK", for: .normal)
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
         button.addTarget(self, action: #selector(playAudioButtonTapped), for: .touchUpInside)
+        button.tintColor = .white
         return button
     }()
     
@@ -65,7 +65,7 @@ class PlayerViewController: UIViewController {
         view.addBlur(style: .dark)
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
         
-        _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,6 +140,13 @@ class PlayerViewController: UIViewController {
     
     @objc func playAudioButtonTapped(sender: UIButton) {
         
+        if playMusicButton.currentImage == UIImage(systemName: "pause.fill") {
+            AudioPlayer.shared.audioPlayer.stop()
+            playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        } else {
+            AudioPlayer.shared.audioPlayer.play()
+            playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        }
     }
     
     @objc func changeAudioTime(sender: UISlider) {
@@ -147,8 +154,6 @@ class PlayerViewController: UIViewController {
         AudioPlayer.shared.audioPlayer.currentTime = TimeInterval(slider.value)
         AudioPlayer.shared.audioPlayer.prepareToPlay()
         AudioPlayer.shared.audioPlayer.play()
-
-
     }
     
     @objc func updateSlider(sender: UISlider) {

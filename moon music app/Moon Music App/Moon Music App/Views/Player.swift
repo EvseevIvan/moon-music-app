@@ -34,6 +34,7 @@ class Player: UIView {
     var playerImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 8
         image.image = UIImage(systemName: "heart.fill")
         return image
     }()
@@ -61,6 +62,7 @@ class Player: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
         button.addTarget(self, action: #selector(playAudioButtonTapped), for: .touchUpInside)
+        button.tintColor = .white
         return button
     }()
     
@@ -77,6 +79,7 @@ class Player: UIView {
         let url = URL(string: album.images[0].url)
         self.playerImage.sd_setImage(with: url)
         self.playerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
+        
 
     }
     
@@ -131,6 +134,7 @@ class Player: UIView {
         ])
 
     }
+
     
     @objc func playAudioButtonTapped(sender: UIButton) {
         
@@ -143,7 +147,7 @@ class Player: UIView {
         }
     }
     
-    
+
     
 }
 
