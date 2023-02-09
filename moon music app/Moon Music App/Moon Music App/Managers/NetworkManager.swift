@@ -70,7 +70,7 @@ class NetworkManager {
             "Content-Type": "application/json"
         ]
 
-        let genresRequest = AF.request("https://api.spotify.com/v1/albums/6IDc214jcfQW2wb7YLABev", method: .get, headers: headers)
+        let genresRequest = AF.request("https://api.spotify.com/v1/albums/5UKIxEdQDFQztvCEfK5QME", method: .get, headers: headers)
 
         genresRequest.responseDecodable(of: Album.self) { response in
             do {

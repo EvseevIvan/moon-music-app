@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 import SDWebImage
 
-var playingNow: Album?
+var playingAlbum: Album?
+var playingTrack: Track?
 
 protocol PlayerDelegate: NSObject {
     func configurePlayer(album: Album, indexPath: IndexPath)
@@ -72,14 +73,16 @@ class Player: UIView {
     }
         
     func configure(with album: Album, indexPath: IndexPath) {
-        playingNow = album
+        playingAlbum = album
+        playingTrack = album.tracks.items[indexPath.row]
         self.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         self.nameOfTrack.text = album.tracks.items[indexPath.row].name
         self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name
         let url = URL(string: album.images[0].url)
         self.playerImage.sd_setImage(with: url)
         self.playerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
-        
+        playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        AudioPlayer.shared.downloadFileFromURL(url: album.tracks.items[indexPath.row].previewURL)
 
     }
     

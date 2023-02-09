@@ -69,7 +69,8 @@ class PlayerViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        configure(album: playingNow!)
+        super.viewWillAppear(animated)
+        configure(album: playingAlbum!, track: playingTrack!)
     }
     
     override func viewDidLayoutSubviews() {
@@ -143,9 +144,11 @@ class PlayerViewController: UIViewController {
         if playMusicButton.currentImage == UIImage(systemName: "pause.fill") {
             AudioPlayer.shared.audioPlayer.stop()
             playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            TapBarViewController().player.playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         } else {
             AudioPlayer.shared.audioPlayer.play()
             playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            TapBarViewController().player.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }
     }
     
@@ -160,8 +163,7 @@ class PlayerViewController: UIViewController {
         slider.value = Float(AudioPlayer.shared.audioPlayer.currentTime)
     }
     
-    func configure(album: Album) {
-        print(album.images[0].url)
+    func configure(album: Album, track: Track) {
         let url = URL(string: album.images[0].url)
         self.imageOfTrack.sd_setImage(with: url)
         self.imageOfTrack.sd_imageIndicator = SDWebImageActivityIndicator.white
@@ -170,8 +172,8 @@ class PlayerViewController: UIViewController {
         } else {
             playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
-        self.nameOfTrack.text = album.tracks.items[0].name
-        self.nameOfArist.text = album.artists[0].name
+        self.nameOfTrack.text = track.name
+        self.nameOfArist.text = track.artists[0].name
     }
     
     

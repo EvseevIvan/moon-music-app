@@ -93,8 +93,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let album = viewModel.album else { return }
         delegate?.configurePlayer(album: album, indexPath: indexPath)
-        AudioPlayer.shared.downloadFileFromURL(url: album.tracks.items[indexPath.row].previewURL)
-        
         
     }
     
