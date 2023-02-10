@@ -21,6 +21,24 @@ class PlayerViewController: UIViewController {
         return button
     }()
     
+    var nextTrackButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "forward.fill"), for: .normal)
+        button.addTarget(self, action: #selector(nextTrackButtonTapped), for: .touchUpInside)
+        button.tintColor = .white
+        return button
+    }()
+    
+    var previousTrackButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "backward.fill"), for: .normal)
+        button.addTarget(self, action: #selector(previousTrackButtonTapped), for: .touchUpInside)
+        button.tintColor = .white
+        return button
+    }()
+    
     var imageOfTrack: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 15
@@ -54,8 +72,8 @@ class PlayerViewController: UIViewController {
         slider.maximumValue = 30
         slider.setValue(0, animated: false)
         slider.minimumTrackTintColor = .green
-        slider.minimumTrackTintColor = .red
-        slider.thumbTintColor = .black
+        slider.minimumTrackTintColor = .white
+        slider.thumbTintColor = .lightGray
         slider.addTarget(self, action: #selector(changeAudioTime), for: .valueChanged)
         return slider
     }()
@@ -85,6 +103,8 @@ class PlayerViewController: UIViewController {
         view.addSubview(nameOfArist)
         view.addSubview(nameOfTrack)
         view.addSubview(slider)
+        view.addSubview(nextTrackButton)
+        view.addSubview(previousTrackButton)
 
         NSLayoutConstraint.activate([
 
@@ -97,6 +117,16 @@ class PlayerViewController: UIViewController {
             playMusicButton.heightAnchor.constraint(equalToConstant: 100),
             playMusicButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
             playMusicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            nextTrackButton.widthAnchor.constraint(equalToConstant: 100),
+            nextTrackButton.heightAnchor.constraint(equalToConstant: 100),
+            nextTrackButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            nextTrackButton.leadingAnchor.constraint(equalTo: playMusicButton.trailingAnchor, constant: 20),
+            
+            previousTrackButton.widthAnchor.constraint(equalToConstant: 100),
+            previousTrackButton.heightAnchor.constraint(equalToConstant: 100),
+            previousTrackButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            previousTrackButton.trailingAnchor.constraint(equalTo: playMusicButton.leadingAnchor, constant: -20),
             
             nameOfTrack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             nameOfTrack.topAnchor.constraint(equalTo: imageOfTrack.bottomAnchor, constant: 30),
@@ -149,6 +179,35 @@ class PlayerViewController: UIViewController {
             AudioPlayer.shared.audioPlayer.play()
             playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             TapBarViewController().player.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        }
+    }
+    
+    @objc func nextTrackButtonTapped(sender: UIButton) {
+        
+            for track in playingAlbum!.tracks.items {
+                if track.trackNumber - 1 == playingTrack!.trackNumber {
+                    AudioPlayer.shared.downloadFileFromURL(url: track.previewURL)
+                    playingTrack = track
+                    self.configure(album: playingAlbum!, track: playingTrack!)
+                    return
+                }
+            }
+    
+    }
+    
+    @objc func previousTrackButtonTapped(sender: UIButton) {
+        
+        if playingTrack?.trackNumber == 1 {
+            AudioPlayer.shared.downloadFileFromURL(url: playingTrack!.previewURL)
+        } else {
+            for track in playingAlbum!.tracks.items {
+                if track.trackNumber + 1 == playingTrack!.trackNumber {
+                    AudioPlayer.shared.downloadFileFromURL(url: track.previewURL)
+                    playingTrack = track
+                    self.configure(album: playingAlbum!, track: playingTrack!)
+                    return
+                }
+            }
         }
     }
     

@@ -92,6 +92,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let album = viewModel.album else { return }
+        playingAlbum = album
+        playingTrack = playingAlbum?.tracks.items[indexPath.row]
         delegate?.configurePlayer(album: album, indexPath: indexPath)
         
     }

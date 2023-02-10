@@ -73,8 +73,6 @@ class Player: UIView {
     }
         
     func configure(with album: Album, indexPath: IndexPath) {
-        playingAlbum = album
-        playingTrack = album.tracks.items[indexPath.row]
         self.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         self.nameOfTrack.text = album.tracks.items[indexPath.row].name
         self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name
