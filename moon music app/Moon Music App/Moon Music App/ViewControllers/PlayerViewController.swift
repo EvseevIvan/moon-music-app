@@ -78,6 +78,19 @@ class PlayerViewController: UIViewController {
         return slider
     }()
     
+    var volumeSlider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.minimumValue = 0
+        slider.maximumValue = 30
+        slider.setValue(0, animated: false)
+        slider.minimumTrackTintColor = .green
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .lightGray
+        slider.addTarget(self, action: #selector(changeVolume), for: .valueChanged)
+        return slider
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addBlur(style: .dark)
@@ -216,6 +229,11 @@ class PlayerViewController: UIViewController {
         AudioPlayer.shared.audioPlayer.currentTime = TimeInterval(slider.value)
         AudioPlayer.shared.audioPlayer.prepareToPlay()
         AudioPlayer.shared.audioPlayer.play()
+    }
+    
+    @objc func changeVolume(sender: UISlider) {
+
+        
     }
     
     @objc func updateSlider(sender: UISlider) {

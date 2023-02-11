@@ -27,7 +27,8 @@ class AudioPlayer {
         do {
             self.audioPlayer = try AVAudioPlayer(contentsOf: url as URL)
             self.audioPlayer.prepareToPlay()
-            self.audioPlayer.volume = 2.0
+            var vol = AVAudioSession.sharedInstance().outputVolume + 0.8
+            self.audioPlayer.volume = vol
             self.audioPlayer.play()
         } catch let error as NSError {
             print(error.localizedDescription)
