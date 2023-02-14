@@ -78,7 +78,6 @@ class Player: UIView {
         self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name
         let url = URL(string: album.images[0].url)
         self.playerImage.sd_setImage(with: url)
-        self.playerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
         playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         AudioPlayer.shared.downloadFileFromURL(url: album.tracks.items[indexPath.row].previewURL)
 

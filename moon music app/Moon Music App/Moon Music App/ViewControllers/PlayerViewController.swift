@@ -91,12 +91,32 @@ class PlayerViewController: UIViewController {
         return slider
     }()
     
+    
+    var trackTime: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .gray
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+    
+    var trackMaxTime: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .gray
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addBlur(style: .dark)
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
         
         _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTrackTime), userInfo: nil, repeats: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,6 +138,8 @@ class PlayerViewController: UIViewController {
         view.addSubview(slider)
         view.addSubview(nextTrackButton)
         view.addSubview(previousTrackButton)
+        view.addSubview(trackTime)
+        view.addSubview(trackMaxTime)
 
         NSLayoutConstraint.activate([
 
@@ -154,9 +176,18 @@ class PlayerViewController: UIViewController {
             slider.widthAnchor.constraint(equalToConstant: view.frame.width - 60),
             slider.heightAnchor.constraint(equalToConstant: 20),
             slider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            slider.topAnchor.constraint(equalTo: nameOfArist.bottomAnchor, constant: 30)
+            slider.topAnchor.constraint(equalTo: nameOfArist.bottomAnchor, constant: 30),
+            
+            trackTime.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            trackTime.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 30),
+            trackTime.widthAnchor.constraint(equalToConstant: 70),
+            trackTime.heightAnchor.constraint(equalToConstant: 30),
 
-
+            trackMaxTime.trailingAnchor.constraint(equalTo: slider.trailingAnchor),
+            trackMaxTime.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 30),
+            trackMaxTime.widthAnchor.constraint(equalToConstant: 70),
+            trackMaxTime.heightAnchor.constraint(equalToConstant: 30),
+            
         ])
 
     }
@@ -232,9 +263,16 @@ class PlayerViewController: UIViewController {
     }
     
     @objc func changeVolume(sender: UISlider) {
-
         
     }
+    
+    
+    @objc func updateTrackTime() {
+        self.trackTime.text = "0:" + String(Int(AudioPlayer.shared.audioPlayer.currentTime))
+        self.trackMaxTime.text = "0:" + String(Int(AudioPlayer.shared.audioPlayer.duration))
+
+    }
+    
     
     @objc func updateSlider(sender: UISlider) {
         slider.value = Float(AudioPlayer.shared.audioPlayer.currentTime)
