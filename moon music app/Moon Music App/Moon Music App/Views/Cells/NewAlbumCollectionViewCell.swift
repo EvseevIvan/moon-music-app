@@ -39,8 +39,8 @@ class NewAlbumCollectionViewCell: UICollectionViewCell {
         self.nameOfAlbum.text = album.tracks.items[indexPath.row].name
 //        self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name
         let url = URL(string: album.images[0].url)
-        self.imageOfAlbum.sd_setImage(with: url)
         self.imageOfAlbum.sd_imageIndicator = SDWebImageActivityIndicator.white
+        self.imageOfAlbum.sd_setImage(with: url)
     }
     
     override func layoutSubviews() {

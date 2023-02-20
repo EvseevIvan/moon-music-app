@@ -94,7 +94,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let album = viewModel.album else { return }
         playingAlbum = album
         playingTrack = playingAlbum?.tracks.items[indexPath.row]
-        delegate?.configurePlayer(album: album, indexPath: indexPath)
+        delegate?.configurePlayer(album: album, track: playingTrack!)
         
     }
     

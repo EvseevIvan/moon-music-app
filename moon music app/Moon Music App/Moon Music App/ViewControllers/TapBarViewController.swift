@@ -9,11 +9,10 @@ import UIKit
 import AVFoundation
 
 class TapBarViewController: UITabBarController, PlayerDelegate {
-    func configurePlayer(album: Album, indexPath: IndexPath) {
-        player.configure(with: album, indexPath: indexPath)
+    
+    func configurePlayer(album: Album, track: Track) {
+        player.configure(with: album, track: track)
     }
-    
-    
     
     var audioPlayer: AVAudioPlayer!
     
@@ -34,8 +33,10 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
         let searchVC = SearchViewController()
         let libraryVC = LibraryViewController()
         let profileVC = ProfileViewController()
+        let playerVC = PlayerViewController()
         
         mainVC.delegate = self
+        playerVC.delegate = self
        
         let navMainVC = UINavigationController(rootViewController: mainVC)
         let navSearchVC = UINavigationController(rootViewController: searchVC)

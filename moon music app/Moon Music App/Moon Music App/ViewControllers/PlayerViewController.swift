@@ -12,6 +12,9 @@ import SDWebImage
 class PlayerViewController: UIViewController {
 
     var viewTranslation = CGPoint(x: 0, y: 0)
+    
+    weak var delegate: PlayerDelegate?
+    
     var playMusicButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -78,32 +81,22 @@ class PlayerViewController: UIViewController {
         return slider
     }()
     
-    var volumeSlider: UISlider = {
-        let slider = UISlider()
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.minimumValue = 0
-        slider.maximumValue = 30
-        slider.setValue(0, animated: false)
-        slider.minimumTrackTintColor = .green
-        slider.minimumTrackTintColor = .red
-        slider.thumbTintColor = .lightGray
-        slider.addTarget(self, action: #selector(changeVolume), for: .valueChanged)
-        return slider
-    }()
-    
     
     var trackTime: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
+        label.text = "0:00"
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
     
     var trackMaxTime: UILabel = {
         let label = UILabel()
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
+        label.text = "0:00"
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
@@ -115,8 +108,9 @@ class PlayerViewController: UIViewController {
         view.addBlur(style: .dark)
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
         
+        
         _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
-        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTrackTime), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTrackTime), userInfo: nil, repeats: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -224,6 +218,7 @@ class PlayerViewController: UIViewController {
             playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             TapBarViewController().player.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }
+        delegate?.configurePlayer(album: playingAlbum!, track: playingTrack!)
     }
     
     @objc func nextTrackButtonTapped(sender: UIButton) {
@@ -262,13 +257,14 @@ class PlayerViewController: UIViewController {
         AudioPlayer.shared.audioPlayer.play()
     }
     
-    @objc func changeVolume(sender: UISlider) {
-        
-    }
-    
     
     @objc func updateTrackTime() {
-        self.trackTime.text = "0:" + String(Int(AudioPlayer.shared.audioPlayer.currentTime))
+        
+        if Int(AudioPlayer.shared.audioPlayer.currentTime) < 10 {
+            self.trackTime.text = "0:0" + String(Int(AudioPlayer.shared.audioPlayer.currentTime))
+        } else {
+            self.trackTime.text = "0:" + String(Int(AudioPlayer.shared.audioPlayer.currentTime))
+        }
         self.trackMaxTime.text = "0:" + String(Int(AudioPlayer.shared.audioPlayer.duration))
 
     }
@@ -280,8 +276,8 @@ class PlayerViewController: UIViewController {
     
     func configure(album: Album, track: Track) {
         let url = URL(string: album.images[0].url)
-        self.imageOfTrack.sd_setImage(with: url)
         self.imageOfTrack.sd_imageIndicator = SDWebImageActivityIndicator.white
+        self.imageOfTrack.sd_setImage(with: url)
         if AudioPlayer.shared.audioPlayer.isPlaying {
             playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         } else {

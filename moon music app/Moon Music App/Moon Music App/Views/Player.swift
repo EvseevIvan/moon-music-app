@@ -13,7 +13,7 @@ var playingAlbum: Album?
 var playingTrack: Track?
 
 protocol PlayerDelegate: NSObject {
-    func configurePlayer(album: Album, indexPath: IndexPath)
+    func configurePlayer(album: Album, track: Track)
 }
 
 class Player: UIView {
@@ -72,14 +72,17 @@ class Player: UIView {
         setupConstraints()
     }
         
-    func configure(with album: Album, indexPath: IndexPath) {
+    func configure(with album: Album, track: Track) {
         self.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-        self.nameOfTrack.text = album.tracks.items[indexPath.row].name
-        self.nameOfArist.text = album.tracks.items[indexPath.row].artists[0].name
+        if AudioPlayer.shared.audioPlayer.isPlaying == false {
+            self.playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        }
+        self.nameOfTrack.text = track.name
+        self.nameOfArist.text = track.artists[0].name
         let url = URL(string: album.images[0].url)
+        self.playerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
         self.playerImage.sd_setImage(with: url)
-        playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-        AudioPlayer.shared.downloadFileFromURL(url: album.tracks.items[indexPath.row].previewURL)
+        AudioPlayer.shared.downloadFileFromURL(url: track.previewURL)
 
     }
     
