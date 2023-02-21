@@ -95,6 +95,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         playingAlbum = album
         playingTrack = playingAlbum?.tracks.items[indexPath.row]
         delegate?.configurePlayer(album: album, track: playingTrack!)
+        AudioPlayer.shared.downloadFileFromURL(url: playingTrack!.previewURL)
         
     }
     

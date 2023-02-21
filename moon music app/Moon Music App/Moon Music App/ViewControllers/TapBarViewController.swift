@@ -33,10 +33,8 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
         let searchVC = SearchViewController()
         let libraryVC = LibraryViewController()
         let profileVC = ProfileViewController()
-        let playerVC = PlayerViewController()
         
         mainVC.delegate = self
-        playerVC.delegate = self
        
         let navMainVC = UINavigationController(rootViewController: mainVC)
         let navSearchVC = UINavigationController(rootViewController: searchVC)
@@ -77,6 +75,7 @@ class TapBarViewController: UITabBarController, PlayerDelegate {
     
     @objc func buttonAction(sender: UIButton!) {
         let vc = PlayerViewController()
+        vc.delegate = self
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
        }

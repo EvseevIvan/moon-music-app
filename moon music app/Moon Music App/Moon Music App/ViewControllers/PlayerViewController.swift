@@ -212,11 +212,9 @@ class PlayerViewController: UIViewController {
         if playMusicButton.currentImage == UIImage(systemName: "pause.fill") {
             AudioPlayer.shared.audioPlayer.stop()
             playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-            TapBarViewController().player.playMusicButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         } else {
             AudioPlayer.shared.audioPlayer.play()
             playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-            TapBarViewController().player.playMusicButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }
         delegate?.configurePlayer(album: playingAlbum!, track: playingTrack!)
     }
@@ -228,6 +226,7 @@ class PlayerViewController: UIViewController {
                     AudioPlayer.shared.downloadFileFromURL(url: track.previewURL)
                     playingTrack = track
                     self.configure(album: playingAlbum!, track: playingTrack!)
+                    delegate?.configurePlayer(album: playingAlbum!, track: playingTrack!)
                     return
                 }
             }
@@ -244,6 +243,7 @@ class PlayerViewController: UIViewController {
                     AudioPlayer.shared.downloadFileFromURL(url: track.previewURL)
                     playingTrack = track
                     self.configure(album: playingAlbum!, track: playingTrack!)
+                    delegate?.configurePlayer(album: playingAlbum!, track: playingTrack!)
                     return
                 }
             }
